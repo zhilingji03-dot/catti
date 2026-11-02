@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f1e8">
+<title>Какой ты котик? — CatTi на русском</title>
+<style>
+:root{--bg:#f6f1e8;--paper:#fffdf8;--ink:#302d2a;--muted:#8a8177;--line:#e8dfd2;--accent:#b56f50;--accent2:#dcae8d;--shadow:0 18px 55px #5d49351a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-rounded,"Segoe UI",system-ui,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}.wrap{width:min(760px,calc(100% - 32px));margin:0 auto;padding:34px 0 54px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}.brand{font-weight:800;color:var(--ink);letter-spacing:.18em}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:clamp(24px,6vw,54px);box-shadow:var(--shadow);min-height:480px;position:relative;overflow:hidden}
+.view{animation:enter .45s ease both}@keyframes enter{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+.kicker{font-size:12px;color:var(--accent);font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(38px,7vw,62px);line-height:1.02;letter-spacing:-.04em;margin:18px 0}
+h2{font-family:Georgia,serif;font-weight:500;font-size:clamp(29px,5vw,42px);line-height:1.12;margin:14px 0 24px}
+p{line-height:1.7;color:#6e665e}.hero-cat{font-size:100px;line-height:1.2;margin:10px 0 4px;filter:drop-shadow(0 12px 9px #8e6a3820)}
+.btn{border:0;border-radius:999px;background:var(--ink);color:white;padding:15px 25px;font-weight:700;transition:.2s;box-shadow:0 7px 18px #302d2a20}.btn:hover{transform:translateY(-2px);background:var(--accent)}.btn.light{background:#f1e9de;color:var(--ink);box-shadow:none}.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.small{font-size:12px;color:var(--muted)}.progressline{height:5px;background:#eee7dc;border-radius:9px;overflow:hidden;margin:17px 0 26px}.progressline span{display:block;height:100%;background:var(--accent);transition:width .35s}
+.qnum{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.08em}
+.answers{display:grid;gap:11px}.answer{width:100%;text-align:left;padding:17px 19px;border:1px solid var(--line);border-radius:16px;background:#fffdfa;color:var(--ink);transition:.2s;line-height:1.45}.answer:hover{border-color:var(--accent2);background:#fbf2e9;transform:translateX(3px)}
+.back{border:0;background:none;color:var(--muted);padding:8px 0;margin-bottom:14px}.back:hover{color:var(--accent)}
+.result-head{text-align:center}.cat-art{font-size:112px;margin:12px 0}.type{display:inline-block;padding:7px 13px;border-radius:999px;background:#f1e5d8;color:#8b553c;font-size:12px;font-weight:800;letter-spacing:.16em}
+.result-title{font-family:Georgia,serif;font-size:clamp(33px,6vw,48px);margin:14px 0 8px}.traits{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:20px 0}.trait{font-size:12px;background:#f5efe6;padding:8px 12px;border-radius:99px;color:#77685a}
+.stats{display:grid;gap:13px;margin:30px 0}.stat{display:grid;grid-template-columns:42px 1fr 42px;gap:10px;align-items:center;font-size:12px;color:var(--muted)}.bar{height:8px;border-radius:9px;background:#eee8df;overflow:hidden}.bar span{height:100%;display:block;background:linear-gradient(90deg,#d8a783,#b56f50);border-radius:9px}
+.note{padding:17px 19px;border-radius:16px;background:#f8f2e9;color:#706357;line-height:1.65;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}.catcard{border:1px solid var(--line);background:#fffdfa;border-radius:18px;padding:16px 12px;text-align:center;transition:.2s}.catcard:hover{transform:translateY(-3px);border-color:var(--accent2)}.catcard .emoji{font-size:43px}.catcard strong{display:block;margin:8px 0 4px;font-size:13px}.catcard small{color:var(--muted);font-size:11px}.catcard.active{border-color:var(--accent);background:#fbf1e7}
+.footer{text-align:center;color:#a1988e;font-size:11px;margin-top:22px}
+@media(max-width:520px){.wrap{padding-top:20px}.panel{border-radius:22px;min-height:0}.top{margin-bottom:18px}.btn{width:100%}.btnrow{display:grid}}
+
+.cat-portrait{width:100%;max-width:230px;aspect-ratio:1;display:block;margin:8px auto 14px;filter:drop-shadow(0 10px 10px #80634a18)}
+.catcard .cat-portrait{width:100%;max-width:112px;margin:0 auto 8px}
+.catcard{padding:13px 10px 15px}
+.catcard strong{font-size:12px;line-height:1.35;min-height:32px}
+.catcard small{display:block;margin-top:3px}
+.gallery-intro{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.gallery-stamp{font-size:34px;background:#f5e9dc;border-radius:16px;padding:9px}
+.result-head .cat-portrait{max-width:250px}
+
+</style></head>
+<body><main class="wrap"><div class="top"><span class="brand">CATTI / КОТИКИ</span><span>тест личности · 24 вопроса</span></div><section class="panel" id="app"></section><div class="footer">Небольшое путешествие к своему внутреннему котику ♡</div></main>
+<script>
+const questions=[
+["Ты приходишь на встречу, где почти никого не знаешь. Что скорее всего сделаешь?",[["Сама начну знакомиться и разговорю компанию","E"],["Сначала освоюсь и понаблюдаю","I"]]],
+["После насыщенного дня тебе хочется…",[["Побыть среди людей, поделиться впечатлениями","E"],["Остаться в тишине и восстановить силы","I"]]],
+["В новой компании ты обычно…",[["Легко вступаю в разговор","E"],["Жду момента, когда появится подходящая тема","I"]]],
+["Когда у тебя появляется интересная мысль…",[["Сразу озвучиваю её, чтобы развить вместе","E"],["Сначала обдумываю её про себя","I"]]],
+["Идеальный выходной для тебя — это…",[["Спонтанная прогулка и встречи","E"],["Спокойный день в своём ритме","I"]]],
+["Если вокруг становится слишком тихо…",[["Мне хочется оживить атмосферу","E"],["Мне в такой тишине хорошо","I"]]],
+["Когда выбираешь новое место, ты обращаешь внимание на…",[["Конкретные детали: интерьер, запахи, удобство","S"],["Общее настроение и то, какие истории оно обещает","N"]]],
+["Тебе дают незнакомую вещь. Ты скорее…",[["Разберусь по инструкции и попробую на практике","S"],["Сначала представлю, как ещё её можно использовать","N"]]],
+["В разговоре тебе интереснее…",[["Реальные события и личный опыт","S"],["Идеи, версии и гипотетические сценарии","N"]]],
+["Когда планируешь поездку…",[["Изучаю маршрут, время и полезные детали","S"],["Выбираю направление по ощущению и вдохновению","N"]]],
+["Что быстрее привлекает твоё внимание?",[["То, что происходит прямо сейчас","S"],["То, что может произойти дальше","N"]]],
+["Ты лучше запоминаешь…",[["Факты, детали и последовательность событий","S"],["Смысл, ассоциации и общее впечатление","N"]]],
+["Друг просит совета в сложной ситуации. Ты…",[["Помогаю спокойно разобрать причины и варианты","T"],["Сначала стараюсь понять, что он чувствует","F"]]],
+["При принятии решения для тебя важнее…",[["Логичность и объективность","T"],["Ценности и влияние на людей","F"]]],
+["Если кто-то ошибся, ты скорее…",[["Скажу прямо, что именно не работает","T"],["Подберу слова, чтобы не задеть человека","F"]]],
+["В споре ты больше ценишь…",[["Последовательные аргументы","T"],["Уважение к чувствам и отношениям","F"]]],
+["Когда нужно оценить поступок человека…",[["Смотрю на факты и намерения","T"],["Учитываю обстоятельства и переживания","F"]]],
+["Что для тебя убедительнее?",[["Чёткое доказательство","T"],["Искренность и человеческая сторона","F"]]],
+["Перед важным делом ты предпочитаешь…",[["Составить план и придерживаться его","J"],["Оставить пространство для изменений","P"]]],
+["Твои заметки и дела обычно…",[["Разложены по полочкам","J"],["Живут в творческом беспорядке","P"]]],
+["Если планы внезапно меняются…",[["Мне нужно время, чтобы перестроиться","J"],["Я быстро подхватываю новый вариант","P"]]],
+["Как тебе удобнее работать?",[["Поэтапно, с понятными сроками","J"],["Гибко, в зависимости от настроения и хода дела","P"]]],
+["Ты скорее…",[["Люблю заранее знать, что меня ждёт","J"],["Предпочитаю решать по ситуации","P"]]],
+["Когда задача почти завершена…",[["Хочу закрыть её и выдохнуть","J"],["Могу заметить новую идею и переключиться","P"]]]
+];
+
+const catLooks={
+ENTJ:{fur:'#b8a99a',light:'#e8ddd0',dark:'#75685f',eye:'#8a9b8c',mark:'tabby',acc:'crown',bg:'#eee2d5'},
+ENTP:{fur:'#d9a879',light:'#f3d7b7',dark:'#966444',eye:'#8b9f9a',mark:'spots',acc:'star',bg:'#f5e7d7'},
+ENFJ:{fur:'#f0e5d7',light:'#fff9ef',dark:'#b9a18d',eye:'#8ba7a2',mark:'mask',acc:'heart',bg:'#f3e7e1'},
+ENFP:{fur:'#cf9360',light:'#f4d4aa',dark:'#8d573b',eye:'#a6a06e',mark:'tabby',acc:'flower',bg:'#f7eadb'},
+ESTJ:{fur:'#b6a18c',light:'#e9d8c5',dark:'#776656',eye:'#91a8a0',mark:'solid',acc:'bow',bg:'#eee7dc'},
+ESTP:{fur:'#d18b48',light:'#f4c98f',dark:'#8b542b',eye:'#9b9a64',mark:'spots',acc:'bolt',bg:'#f7e6ce'},
+ESFJ:{fur:'#d7d0c6',light:'#fff8ee',dark:'#a99c90',eye:'#91a8b2',mark:'round',acc:'heart',bg:'#f3e9e4'},
+ESFP:{fur:'#e8c18e',light:'#fff0d4',dark:'#a66f42',eye:'#91a9a2',mark:'point',acc:'flower',bg:'#f7ead8'},
+INTJ:{fur:'#89949a',light:'#dce2e1',dark:'#59646d',eye:'#8aa7b3',mark:'solid',acc:'moon',bg:'#e7edf0'},
+INTP:{fur:'#e8d9c7',light:'#fff7eb',dark:'#9b8775',eye:'#8da9a7',mark:'sparse',acc:'glasses',bg:'#f0e9e0'},
+INFJ:{fur:'#b8b5b0',light:'#f1ece5',dark:'#777b7c',eye:'#91a6a5',mark:'longhair',acc:'moon',bg:'#e9e8e4'},
+INFP:{fur:'#f1e7dd',light:'#fffaf3',dark:'#c5b5a7',eye:'#9aaeb1',mark:'fluffy',acc:'flower',bg:'#f4e9e6'},
+ISTJ:{fur:'#a9aeb0',light:'#e8e9e5',dark:'#737b7e',eye:'#8ca5a9',mark:'round',acc:'scarf',bg:'#e9ece9'},
+ISTP:{fur:'#c49c83',light:'#f0d9c8',dark:'#88624e',eye:'#9aa99a',mark:'rex',acc:'gear',bg:'#f0e5dd'},
+ISFJ:{fur:'#eee2d2',light:'#fffaf1',dark:'#bda58c',eye:'#8da7a5',mark:'point',acc:'ribbon',bg:'#f3e9df'},
+ISFP:{fur:'#d4bda9',light:'#f7eadd',dark:'#9a8170',eye:'#9aa9a2',mark:'patch',acc:'butterfly',bg:'#f2e8e1'}
+};
+function catArt(type,large=false){
+ const d=catLooks[type]||catLooks.INFP;
+ const stripe = d.mark==='tabby'||d.mark==='round'||d.mark==='sparse' ? `<path d="M92 73l15 20m-1-26 13 20m39-14-14 20m2-28-12 20" stroke="${d.dark}" stroke-width="7" stroke-linecap="round" opacity=".55" fill="none"/>` : '';
+ const spots = d.mark==='spots'?`<g fill="${d.dark}" opacity=".75"><ellipse cx="91" cy="111" rx="9" ry="13"/><ellipse cx="165" cy="106" rx="8" ry="12"/><ellipse cx="78" cy="143" rx="6" ry="9"/><ellipse cx="177" cy="145" rx="6" ry="9"/></g>`:'';
+ const mask = d.mark==='mask'||d.mark==='point'?`<path d="M80 117Q96 88 125 119Q151 88 177 117L166 153Q128 176 91 153Z" fill="${d.dark}" opacity=".7"/>`: '';
+ const patch = d.mark==='patch'?`<path d="M79 90Q94 66 120 88L110 124 80 120Z" fill="${d.dark}"/><path d="M151 85Q175 78 184 111L163 129 145 109Z" fill="${d.dark}"/>`:'';
+ const fluff = d.mark==='fluffy'||d.mark==='longhair'?`<path d="M70 139Q53 154 69 181Q80 197 99 190Q126 209 151 191Q181 198 190 174Q205 149 184 133" fill="${d.fur}" stroke="${d.dark}" stroke-opacity=".35" stroke-width="3"/>`: '';
+ let accessory='';
+ switch(d.acc){
+ case 'crown': accessory='<path d="M101 57l-5-24 21 14 14-23 14 23 21-14-5 24Z" fill="#e6bd70" stroke="#9b7542" stroke-width="3"/>';break;
+ case 'bow': accessory='<path d="M126 177Q97 148 91 177Q90 201 126 184Q162 201 163 177Q156 148 126 177Z" fill="#bd8c75" stroke="#93675a" stroke-width="3"/>';break;
+ case 'heart': accessory='<path d="M126 47C106 26 82 49 126 83C170 49 146 26 126 47Z" fill="#d98f91"/>';break;
+ case 'flower': accessory='<g transform="translate(164 48)"><circle r="8" fill="#e6b96f"/><g fill="#e9aeb0"><circle cy="-13" r="8"/><circle cy="13" r="8"/><circle cx="-13" r="8"/><circle cx="13" r="8"/></g></g>';break;
+ case 'star': accessory='<path d="M164 29l7 17 18 1-14 11 5 18-16-10-16 10 5-18-14-11 18-1Z" fill="#e5bb70"/>';break;
+ case 'moon': accessory='<path d="M165 28a21 21 0 1 0 20 32 18 18 0 0 1-20-32Z" fill="#d5b7dc"/>';break;
+ case 'scarf': accessory='<path d="M89 170Q126 190 165 169L158 190Q126 207 96 190Z" fill="#8da9a5"/>';break;
+ case 'ribbon': accessory='<path d="M125 175l-27-18 4 31 23-7 23 7 4-31Z" fill="#d6a0a1"/>';break;
+ case 'glasses': accessory='<g fill="none" stroke="#987b62" stroke-width="4"><circle cx="99" cy="126" r="20"/><circle cx="153" cy="126" r="20"/><path d="M119 126h14"/></g>';break;
+ case 'gear': accessory='<g transform="translate(169 51)" fill="#b7a38e"><circle r="15"/><circle r="6" fill="#f5e9dc"/></g>';break;
+ case 'bolt': accessory='<path d="M169 27l-18 29h15l-8 25 26-35h-16l8-19Z" fill="#e5bd6c"/>';break;
+ case 'butterfly': accessory='<g transform="translate(168 49)"><path d="M0 0Q-29-31-25 0Q-21 24 0 4Q21 24 25 0Q29-31 0 0Z" fill="#c6a6ca"/><path d="M0-2v17" stroke="#826d8c" stroke-width="3"/></g>';break;
+ default: accessory='<circle cx="165" cy="43" r="11" fill="#e6c28b"/>';
+ }
+ return `<svg class="cat-portrait" viewBox="0 0 250 250" role="img" aria-label="${cats[type][0]} — иллюстрация котика" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="g${type}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${d.bg}"/><stop offset="1" stop-color="#fffaf4"/></linearGradient></defs>
+ <rect x="5" y="5" width="240" height="240" rx="42" fill="url(#g${type})"/>
+ <circle cx="35" cy="45" r="4" fill="#e2bd91"/><path d="M207 36l4 9 10 2-8 6 2 10-8-6-8 6 3-10-8-6 10-2Z" fill="#e4c38f" opacity=".8"/>
+ <ellipse cx="126" cy="210" rx="77" ry="16" fill="#9b7b6320"/>
+ <path d="M70 183Q41 199 48 220Q58 237 83 215" fill="none" stroke="${d.fur}" stroke-width="18" stroke-linecap="round"/>
+ <path d="M67 108L73 45Q76 29 91 45L119 72Q135 70 151 72L180 43Q194 29 198 49L193 112" fill="${d.fur}" stroke="${d.dark}" stroke-width="4" stroke-linejoin="round"/>
+ <path d="M83 76L87 54 108 77M164 76L187 52 184 82" fill="${d.light}"/>
+ <ellipse cx="126" cy="139" rx="76" ry="76" fill="${d.fur}" stroke="${d.dark}" stroke-width="4"/>
+ ${fluff}${stripe}${spots}${mask}${patch}
+ <ellipse cx="99" cy="137" rx="14" ry="18" fill="${d.eye}"/><ellipse cx="153" cy="137" rx="14" ry="18" fill="${d.eye}"/>
+ <ellipse cx="101" cy="139" rx="6" ry="10" fill="#303238"/><ellipse cx="155" cy="139" rx="6" ry="10" fill="#303238"/>
+ <circle cx="104" cy="131" r="4" fill="white"/><circle cx="158" cy="131" r="4" fill="white"/>
+ <path d="M117 160Q126 168 135 160Q126 176 117 160Z" fill="#bd8581"/><path d="M126 170Q118 184 108 176M126 170Q134 184 144 176" fill="none" stroke="${d.dark}" stroke-width="3" stroke-linecap="round"/>
+ <path d="M67 163l-29-5m30 14-29 5m144-14 29-5m-29 14 29 5" stroke="${d.dark}" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+ ${accessory}
+ <path d="M91 207Q126 220 161 207" fill="none" stroke="${d.dark}" stroke-opacity=".2" stroke-width="3" stroke-linecap="round"/>
+ </svg>`;
+}
+
+const cats={
+ENTJ:["Мейн-кун","🐈","Кот, который незаметно становится главным в комнате","Уверенный, собранный и дальновидный. Ты умеешь видеть общую картину и брать ответственность, когда остальные ещё выбирают место на диване.","лидерство","решительность","стратегия"],
+ENTP:["Ориентальная кошка","😼","Любопытство, которому всегда мало одной двери","Ты легко находишь неожиданные связи, любишь спорить ради идеи и редко идёшь проторенной дорожкой.","изобретательность","юмор","любознательность"],
+ENFJ:["Рэгдолл","🐱","Тот самый кот, рядом с которым всем спокойнее","Ты тонко чувствуешь атмосферу и умеешь объединять людей. Иногда заботишься обо всех раньше, чем о себе.","эмпатия","тепло","поддержка"],
+ENFP:["Абиссинская кошка","🐈‍⬛","Котик, который идёт знакомиться со всем миром","Тебя ведут интерес, энергия и возможность открыть что-то новое. Ты умеешь зажечься идеей и заразить этим других.","энтузиазм","свобода","воображение"],
+ESTJ:["Американская короткошёрстная","🐈","Надёжный кот, у которого всё под контролем","Ты ценишь ясность, порядок и результат. На тебя можно положиться: если взялась за дело, оно не останется лежать в углу.","практичность","организованность","надёжность"],
+ESTP:["Бенгальская кошка","🐆","Приключение начинается там, где ты появляешься","Ты быстро реагируешь, любишь движение и предпочитаешь проверять мир на практике, а не издалека.","смелость","энергия","спонтанность"],
+ESFJ:["Шотландская вислоухая","🐱","Котик, который помнит, кто сегодня грустит","Ты внимательна к людям и маленьким знакам заботы. Для тебя важны близость, взаимность и ощущение команды.","забота","общительность","верность"],
+ESFP:["Сиамская кошка","😺","Невозможно не заметить твоё появление","Ты приносишь в пространство живость и эмоции. Любишь впечатления, людей и моменты, которые хочется запомнить.","обаяние","эмоции","яркость"],
+INTJ:["Русская голубая","🐈‍⬛","Тихий стратег с собственным планом","Ты наблюдательна, самостоятельна и любишь понимать, как всё устроено. Не раскрываешь карты раньше времени.","стратегия","независимость","проницательность"],
+INTP:["Сфинкс","🐈","Исследователь, который не отпустит странный вопрос","Тебя увлекают идеи и закономерности. Ты можешь долго разбирать одну деталь просто потому, что она показалась интересной.","анализ","любопытство","оригинальность"],
+INFJ:["Норвежская лесная кошка","🌙","Спокойный взгляд, за которым целая вселенная","Ты замечаешь то, что другие пропускают, и ищешь смысл за словами. Тебе важны глубина и искренность.","интуиция","чуткость","глубина"],
+INFP:["Персидская кошка","🌸","Котик, который видит целую историю в солнечном пятне","Ты бережно относишься к своему внутреннему миру, ценишь подлинность и умеешь находить красоту в мелочах.","мечтательность","ценности","воображение"],
+ISTJ:["Британская короткошёрстная","🐈","Невозмутимый хранитель привычного порядка","Ты ценишь надёжность, последовательность и конкретные поступки. Твоя забота часто выражается не словами, а делом.","ответственность","постоянство","внимательность"],
+ISTP:["Девон-рекс","😸","Сначала разобраться, потом уже объяснять","Ты самостоятельна, практична и любишь учиться через действие. Тебе важно иметь свободу решать задачи своим способом.","ловкость","самостоятельность","спокойствие"],
+ISFJ:["Бирманская кошка","🤍","Тихая забота, которую замечают не сразу","Ты помнишь детали, ценишь близких и умеешь создавать чувство безопасности. Твоя мягкость не означает слабость.","преданность","тактичность","забота"],
+ISFP:["Экзотическая короткошёрстная","🐾","Эстет, который выбирает свой собственный ритм","Ты чувствуешь красоту, ценишь комфорт и не любишь, когда тебя загоняют в рамки. Тебе важно жить в согласии с собой.","эстетика","чувствительность","свобода"]
+};
+const app=document.getElementById('app');let idx=0,answers=[],scores={E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0};
+function show(html){app.innerHTML='<div class="view">'+html+'</div>'}
+function home(){show(`<div class="kicker">Маленький тест о большом внутреннем мире</div><div class="hero-cat">🐈</div><h1>Какой ты<br>котик?</h1><p>24 вопроса отделяют тебя от знакомства с твоим внутренним котом. Выбирай то, что ближе именно тебе. Здесь нет правильных ответов.</p><div class="btnrow"><button class="btn" onclick="start()">Начать тест →</button></div><p class="small">≈ 2–3 минуты · без правильных и неправильных ответов</p>`)}
+function start(){idx=0;answers=[];scores={E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0};question()}
+function question(){let q=questions[idx];show(`<button class="back" onclick="goBack()">← Назад</button><div class="qnum"><span>ВОПРОС ${String(idx+1).padStart(2,'0')} / 24</span><span>CATTI</span></div><div class="progressline"><span style="width:${(idx+1)/24*100}%"></span></div><div class="kicker">Выбирай сердцем</div><h2>${q[0]}</h2><div class="answers">${q[1].map((a,i)=>`<button class="answer" onclick="choose('${a[1]}')">${a[0]}</button>`).join('')}</div>`)}
+function choose(letter){answers[idx]=letter;if(idx<23){idx++;question()}else result()}
+function goBack(){if(idx>0){idx--;question()}else home()}
+function result(){scores={E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0};answers.forEach(x=>scores[x]++);let type=['E','S','T','J'].map((a,i)=>{let b=['I','N','F','P'][i];return scores[a]>=scores[b]?a:b}).join('');let c=cats[type];let total=scores.E+scores.I+scores.S+scores.N+scores.T+scores.F+scores.J+scores.P;let bars=[['E','Экстраверсия','I'],['S','Конкретика','N'],['T','Логика','F'],['J','Структура','P']];show(`<div class="result-head"><div class="kicker">ТВОЙ КОТИК НАЙДЕН</div><div class="cat-art">${catArt(type,true)}</div><span class="type">${type}</span><div class="result-title">${c[0]}</div><p>${c[2]}</p><div class="traits">${c.slice(4).map(t=>`<span class="trait">${t}</span>`).join('')}</div></div><p>${c[3]}</p><h2 style="font-size:27px;margin-top:34px">Твои восемь измерений</h2><div class="stats">${bars.map(([a,n,b])=>{let left=scores[a],right=scores[b],sum=left+right,p=sum?Math.round(left/sum*100):50;return `<div class="stat"><b>${a}</b><div><div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>${n}</span><span>${b}</span></div><div class="bar"><span style="width:${p}%"></span></div></div><b>${b}</b></div>`}).join('')}</div><div class="note">Это развлекательный тест, а не психологическая диагностика. Результат показывает твои ответы сегодня — и не обязан описывать тебя целиком.</div><div class="btnrow"><button class="btn" onclick="encyclopedia('${type}')">Кошачья энциклопедия</button><button class="btn light" onclick="share('${type}')">Поделиться результатом</button><button class="btn light" onclick="start()">Пройти ещё раз</button></div>`)}
+function encyclopedia(active){show(`<button class="back" onclick="result()">← К результату</button><div class="gallery-intro"><div class="gallery-stamp">🐾</div><div><div class="kicker">КОШАЧЬЯ ЭНЦИКЛОПЕДИЯ</div><h2 style="margin:5px 0">16 характеров — 16 котиков</h2></div></div><p>Каждый котик нарисован в своём стиле. Нажми на карточку, чтобы познакомиться поближе.</p><div class="grid">${Object.entries(cats).map(([t,c])=>`<button class="catcard ${t===active?'active':''}" onclick="detail('${t}')">${catArt(t)}<strong>${c[0]}</strong><small>${t}</small></button>`).join('')}</div><div class="btnrow"><button class="btn light" onclick="result()">Вернуться к результату</button></div>`)}
+function detail(t){let c=cats[t];show(`<button class="back" onclick="encyclopedia('${t}')">← К энциклопедии</button><div class="result-head"><div class="cat-art">${catArt(t,true)}</div><span class="type">${t}</span><div class="result-title">${c[0]}</div><p>${c[2]}</p></div><p>${c[3]}</p><div class="traits">${c.slice(4).map(x=>`<span class="trait">${x}</span>`).join('')}</div><div class="btnrow"><button class="btn light" onclick="encyclopedia('${t}')">Все котики</button></div>`)}
+function share(t){let c=cats[t],txt=`Мой результат CatTi: ${c[0]} (${t}) 🐾 ${c[2]}`;if(navigator.share)navigator.share({title:'Мой котик',text:txt}).catch(()=>{});else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>alert('Результат скопирован!'))}else alert(txt)}
+home();
+</script></body></html>
